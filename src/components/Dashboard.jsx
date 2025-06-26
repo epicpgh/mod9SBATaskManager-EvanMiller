@@ -31,16 +31,13 @@ function Dashboard() {
         : task
     );
 
-    setTasks(updatedTasks);
-    useEffect(() => {
-        const storedTasks = localStorage.getItem('tasks');
-        setTasks(storedTasks);
-    }, []);
-    useEffect(() => {
-        const storedTasks = loadTasksFromStorage();
-        setTasks(storedTasks);
-    }, []);
+    
   }
+
+  useEffect(() => {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}, [tasks]);
+  
     return (
       <>
         <h1>Dashboard</h1>

@@ -2,7 +2,7 @@
 
 
 
-function TaskItem({task, onDelete, toggleCompleted}){
+function TaskItems({task, onDelete, toggleCompleted}){
 
 return(
 
@@ -24,4 +24,4 @@ return(
 </div>
 )}
 
-export default TaskItem
+export default TaskItems

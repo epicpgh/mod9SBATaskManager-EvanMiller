@@ -22,10 +22,10 @@ function TaskForm({ onAddTask }) {
             alert("Task title is required");
             return;
         }
-    }   
+      
 
     const newTask ={
-        id: Date.now().toString,
+        id: Date.now().toString(),
 
 
         title: form.title,
@@ -33,10 +33,13 @@ function TaskForm({ onAddTask }) {
         status: "pending",
         priority: form.priority,
 
+        completed: false,
+
     }
 
-    onAddTask(newTask)
-    setForm({ title: "", dueDate: "", priority: "medium" })
+    onAddTask(newTask);
+    setForm({ title: "", dueDate: "", priority: "medium" });
+}
 
     return (
 
@@ -52,12 +55,8 @@ function TaskForm({ onAddTask }) {
             <input type="date" 
             name = "dueDate" 
             value = {form.dueDate}
+            onChange = {handleChange}
             className="border p-2 rounded" />
-            <input type = "text" 
-            name = "status" 
-            value = {form.status} 
-            onChange ={handleChange} 
-            placeholder="Task Status" />
 
             <select name = "priority" 
             onChange={handleChange} 
