@@ -16,9 +16,13 @@ function TaskForm({onAddTask}) {
             ...prev,
             [name]: value,
         })  );
-
+    }
     function handleSubmit(e){
         e.preventDefault()
+        if (!form.title.trim()) {
+            alert("Task title is required");
+            return;
+        }
     }   
 
     const newTask ={
@@ -26,6 +30,7 @@ function TaskForm({onAddTask}) {
 
 
         title: form.title,
+        dueDate: form.dueDate,
         status: "pending",
         priority: form.priority,
 
@@ -39,16 +44,32 @@ function TaskForm({onAddTask}) {
         <>
         
         <h2>Task Form</h2>
-        <form onSubmit = {handleSubmit}>
-            <input type="text" name = "title" value = {form.title} onChange ={handleChange} placeholder="Task Title" />
-            <input type="date" name = "dueDate" value = {form.dueDate} />
-            <input type = "text" name = "status" placeholder="Task Status" />
-            <select name = "priority" onChange={handleChange} value={form.priority} id="Task Priority">
+        <form onSubmit = {handleSubmit} className="flex flex-col gap-2 w-full max-w-md">
+            <input type="text" 
+            name = "title" 
+            value = {form.title} 
+            onChange ={handleChange} 
+            placeholder="Task Title" />
+            <input type="date" 
+            name = "dueDate" 
+            value = {form.dueDate}
+            className="border p-2 rounded" />
+            <input type = "text" 
+            name = "status" 
+            value = {form.status} 
+            onChange ={handleChange} 
+            placeholder="Task Status" />
+
+            <select name = "priority" 
+            onChange={handleChange} 
+            value={form.priority}>
                 <option value = "low">Low</option>
                 <option value = "medium">Medium</option>
                 <option value = "high">High</option>
         </select>
-                <input type = "checkbox" name = "completed" />
+                <input type = "checkbox"
+                 name = "completed" 
+                 className='border p-2 rounded'/>
                 <button type = "submit">Add Task</button>
         </form>
 

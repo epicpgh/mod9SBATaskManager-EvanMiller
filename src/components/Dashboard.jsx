@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
 import TaskFilter from "./TaskFilter";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
-
+import { loadTasksFromStorage } from "./utils/taskUtils";
+import {filterTasks} from "./utils/filterUtils";
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
+  const [filters, setFilters] = useState({
+    status: "all",
+    priority: "all",
+    search: "",
+  });
+  const filteredTasks = filterTasks(tasks, filters);
 
   function addTask(task) {
     setTasks([...tasks, task]);
@@ -25,13 +32,20 @@ function Dashboard() {
     );
 
     setTasks(updatedTasks);
-    }
-
+    useEffect(() => {
+        const storedTasks = localStorage.getItem('tasks');
+        setTasks(storedTasks);
+    }, []);
+    useEffect(() => {
+        const storedTasks = loadTasksFromStorage();
+        setTasks(storedTasks);
+    }, []);
+  }
     return (
       <>
         <h1>Dashboard</h1>
 
-        <TaskFilter />
+        <TaskFilter onFilterChange={setFilters}/>
 
         <TaskForm onAddTask={addTask} />
 
