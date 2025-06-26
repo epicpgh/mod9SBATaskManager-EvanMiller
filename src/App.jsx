@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 
 import './App.css'
 
@@ -8,14 +8,14 @@ function App() {
 
 
   return (
-    <>
+    <div className="App min-h-screen bg-gray-100 p-4">
 
-    <h1>Module 9 SBA</h1>
+    <h1 className="text-2xl font-bold mb-4">Module 9 SBA</h1>
     <Dashboard />
    
 
      
-    </>
+    </div>
   )
 }
 

@@ -2,21 +2,20 @@
 import { useState } from "react";
 
 
-function TaskForm({onAddTask}) {
+function TaskForm({ onAddTask }) {
+  const [form, setForm] = useState({
+    title: "",
+    dueDate: "",
+    priority: "medium",
+  });
 
-    const [form, setForm] = useState({
-        title: "",
-        status: "",
-        priority: "medium",
-    })
-
-    function handleChange(e){
-        const {name, value} = e.target
-        setForm((prev) => ({
-            ...prev,
-            [name]: value,
-        })  );
-    }
+      function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
     function handleSubmit(e){
         e.preventDefault()
         if (!form.title.trim()) {
@@ -37,7 +36,7 @@ function TaskForm({onAddTask}) {
     }
 
     onAddTask(newTask)
-    setForm({ title: "", priority: "medium" })
+    setForm({ title: "", dueDate: "", priority: "medium" })
 
     return (
 

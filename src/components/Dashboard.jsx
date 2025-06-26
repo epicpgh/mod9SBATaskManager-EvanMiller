@@ -1,9 +1,9 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import TaskFilter from "./TaskFilter";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 import { loadTasksFromStorage } from "./utils/taskUtils";
-import {filterTasks} from "./utils/filterUtils";
+import {filterTasks} from "./utils/taskUtils";
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [filters, setFilters] = useState({
